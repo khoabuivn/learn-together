@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,15 +43,21 @@ fun ComposeArticleApp(){
     ArticleCard(
         title = stringResource(R.string.title_text),
         firstParagraph = stringResource(R.string.firstParagraph_text),
-        secondParagraph = stringResource(R.string.secondParagraph_text)
+        secondParagraph = stringResource(R.string.secondParagraph_text),
+        imagePainter = painterResource(R.drawable.bg_compose_background)
     )
 }
 @Composable
-fun ArticleCard(title: String, firstParagraph: String, secondParagraph: String) {
-    val image = painterResource(R.drawable.bg_compose_background)
+fun ArticleCard(
+    title: String,
+    firstParagraph: String,
+    secondParagraph: String,
+    imagePainter: Painter,
+    modifier: Modifier = Modifier
+) {
     Column {
         Image(
-            painter = image,
+            painter = imagePainter,
             contentDescription = null
         )
         Text(
@@ -60,13 +67,11 @@ fun ArticleCard(title: String, firstParagraph: String, secondParagraph: String) 
         )
         Text(
             text = firstParagraph,
-            fontSize = 16.sp,
             textAlign = TextAlign.Justify,
             modifier = Modifier.padding(start = 16.dp, end = 16.dp)
         )
         Text(
             text = secondParagraph,
-            fontSize = 16.sp,
             textAlign = TextAlign.Justify,
             modifier = Modifier.padding(16.dp)
         )
